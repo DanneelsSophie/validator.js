@@ -3,6 +3,7 @@ import merge from './util/merge';
 
 const default_fqdn_options = {
   require_tld: true,
+  allow_hyphens: false,
   allow_underscores: false,
   allow_trailing_dot: false,
   allow_numeric_tld: false,
@@ -63,7 +64,7 @@ export default function isFQDN(str, options) {
     }
 
     // disallow parts starting or ending with hyphen
-    if (/^-|-$/.test(part)) {
+    if (!options.allow_hyphens && /^-|-$/.test(part)) {
       return false;
     }
 

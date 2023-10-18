@@ -395,13 +395,9 @@ describe('Validators', () => {
         'http://300.0.0.1/',
         'mailto:foo@bar.com',
         'rtmp://foobar.com',
-        'http://www.xn--.com/',
-        'http://xn--.com/',
         'http://www.foobar.com:0/',
         'http://www.foobar.com:70000/',
         'http://www.foobar.com:99999/',
-        'http://www.-foobar.com/',
-        'http://www.foobar-.com/',
         'http://foobar/# lol',
         'http://foobar/? lol',
         'http://foobar/ lol/',
@@ -511,6 +507,23 @@ describe('Validators', () => {
         'http://_.example.com',
       ],
       invalid: [],
+    });
+  });
+
+  it('should validate URLs with hyphen', () => {
+    test({
+      validator: 'isURL',
+      args: [{
+        allow_underscores: true,
+      }],
+      valid: [
+        'http://foo-bar.com',
+        'http://pr.example-com.294.example.com/',
+        'http://foo--bar.com',
+        'http://-.example.com',
+        'http://-.example-.com',
+      ],
+      invalid: ['http://-.example-.com-'],
     });
   });
 

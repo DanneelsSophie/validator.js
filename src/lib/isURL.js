@@ -25,6 +25,7 @@ const default_url_options = {
   require_host: true,
   require_port: false,
   require_valid_protocol: true,
+  allow_hyphens: true,
   allow_underscores: false,
   allow_trailing_dot: false,
   allow_protocol_relative_urls: false,
